@@ -9,53 +9,59 @@ body {
   font-family: system-ui, sans-serif;
   background-color: #fff;
   color: #000;
-  padding: 0;            /* сторінка по ширині = весь екран */
+  padding: 0;
   line-height: 1.4;
 }
 
-/* Обгортка на всю ширину, без фіксованої висоти */
+/* Обгортка: по всій ширині екрана */
 .page-wrapper {
   width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
+  max-width: 1200px;         /* щоб не розлазилось на дуже широких екранах */
   margin: 0 auto;
+  padding: 20px;
   color: #000;
   background-color: transparent;
-  border: 1px solid transparent;
 }
 
-/* clearfix для float-ів */
+/* clearfix для внутрішніх float-колонок */
 .page-wrapper::after {
   content: "";
   display: block;
   clear: both;
 }
 
-/* Ліва колонка: гнучка ширина, без px */
+/* ===== КОЛОНКИ: ЛІВА, GUTTER, ПРАВА ===== */
+
 .left-col-classic {
   float: left;
-  width: 25%;              /* частка ширини екрана */
+  width: 22.5%;              /* ~150px із 660px, але тепер у % */
   border: 1px solid #999;
   border-right: none;
   background-color: transparent;
 }
 
-/* Права колонка: займає решту простору */
+/* тонка середня колонка */
+.gutter-classic {
+  float: left;
+  width: 1.5%;               /* ~10px із 660px */
+  min-width: 8px;
+  max-width: 16px;
+  background-color: #fff;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+}
+
+/* права колонка */
 .right-col-classic {
   float: left;
-  width: 75%;
+  width: 76%;                /* решта ширини */
   border: 1px solid #999;
   border-left: none;
   background-color: #fff;
   color: #000;
 }
 
-/* Gutter більше не потрібен як візуальний елемент */
-.gutter-classic {
-  display: none;
-}
-
-/* ========= ЛІВА КОЛОНКА: БЛОКИ 1 і 4 ========= */
+/* ===== ЛІВА КОЛОНКА: BOX1 + BOX4 ===== */
 
 .box1-classic,
 .box4-classic {
@@ -64,18 +70,20 @@ body {
   text-align: left;
 }
 
+/* верхній блок */
 .box1-classic {
   background-color: #ffe5cc;
   border-bottom: 1px solid #999;
 }
 
+/* нижній блок */
 .box4-classic {
   background-color: #e6f0d5;
 }
 
-/* ========= ПРАВА КОЛОНКА ========= */
+/* ===== ПРАВА КОЛОНКА: BOX2 (верх), BOX3 (середина), BOX5 (низ) ===== */
 
-/* Верхній блок (2): шапка з двома колонками на float */
+/* верхній блок із двома колонками всередині */
 .box2-classic {
   background-color: #c7d5ef;
   border-bottom: 1px solid #000;
@@ -84,24 +92,25 @@ body {
   color: #000;
 }
 
-/* Внутрішні колонки в box2 – класичні float-и */
+/* всередині box2: ліва частина зі слоганом */
 .box2-left {
   float: left;
   width: 45%;
 }
 
+/* права частина з текстом */
 .box2-right {
   float: right;
   width: 50%;
   font-size: 16px;
 }
 
-/* Очистка обтікання */
+/* очистка обтікання після внутрішніх колонок */
 .clearfix {
   clear: both;
 }
 
-/* Слоган */
+/* слоган */
 .slogan {
   font-size: 20px;
   font-weight: 600;
@@ -112,7 +121,7 @@ body {
   display: inline-block;
 }
 
-/* Середній блок (3): основний текст */
+/* середній текстовий блок */
 .box3-classic {
   background-color: #fff;
   border-bottom: 1px solid #000;
@@ -121,7 +130,7 @@ body {
   color: #000;
 }
 
-/* Нижній блок (5): номер + навігація */
+/* нижній блок з номером і меню */
 .box5-classic {
   background-color: #c7d5ef;
   padding: 20px;
@@ -129,7 +138,7 @@ body {
   color: #000;
 }
 
-/* Усередині box5 теж float-розкладка */
+/* всередині box5: ліва та права частини */
 .box5-left {
   float: left;
   width: 15%;
@@ -150,7 +159,9 @@ body {
   color: #000;
 }
 
-/* ========= НАВІГАЦІЯ ========= */
+/* очистка обтікання для box5 вже є через .clearfix у HTML */
+
+/* ===== НАВІГАЦІЯ ===== */
 
 .cta {
   font-size: 20px;
@@ -183,7 +194,7 @@ body {
   text-decoration: underline;
 }
 
-/* ========= ТЕКСТОВІ СТИЛІ ========= */
+/* ===== ТЕКСТОВІ СТИЛІ ===== */
 
 .text-wrapper p {
   margin-bottom: 12px;
